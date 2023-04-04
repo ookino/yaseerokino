@@ -3,11 +3,5 @@
 ```md
 Hi there 👋, I'm Yaseer Anaisi Okino
 
-> Software Developer & UI Enthusiast
-```
-
-
-
-```md
-> A Dev can be a Designer
+→ Software Developer & UI Enthusiast
 ```
