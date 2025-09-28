@@ -1,0 +1,76 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+    "vcs": {
+        "enabled": false,
+        "clientKind": "git",
+        "useIgnoreFile": false
+    },
+
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "suspicious": {
+                "noEmptyInterface": "warn"
+            },
+            "correctness": {
+                "noUnusedImports": "error",
+                "useUniqueElementIds": "off"
+            },
+            "style": {
+                "useImportType": {
+                    "level": "warn",
+                    "fix": "safe",
+                    "options": {}
+                }
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "double"
+        }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
+    },
+    "files": {
+        "includes": [
+            "**",
+            "!**/dist/*",
+            "!**/build/*",
+            "!**/out/*",
+            "!**/coverage/*",
+            "!**/storybook-static/*",
+            "!**/node_modules/*",
+            "!.turbo/*",
+            "!**/.next/*",
+            "!**/.svelte-kit/*",
+            "!**/tmp/*",
+            "!**/log/*",
+            "!**/.*cache",
+            "!**/.*log",
+            "!**/.*temp",
+            "**/*.js",
+            "**/*.ts",
+            "**/*.cjs",
+            "**/*.mjs",
+            "**/*.d.cts",
+            "**/*.d.mts",
+            "**/*.jsx",
+            "**/*.tsx",
+            "**/*.json",
+            "**/*.jsonc"
+        ]
+    }
+}
