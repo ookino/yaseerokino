@@ -34,7 +34,7 @@ export function ModeToggle() {
         <Button
             variant="ghost"
             size="icon"
-            className="group/toggle flex-shrink-0"
+            className="group/toggle flex-shrink-0 size-10"
             onClick={handleThemeToggle}
         >
             <IconBrightness />

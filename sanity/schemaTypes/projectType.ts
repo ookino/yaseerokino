@@ -17,9 +17,7 @@ export const projectType = defineType({
             name: "slug",
             title: "Slug",
             type: "slug",
-            options: {
-                source: "title",
-            },
+            options: { source: "title" },
             validation: (Rule) => Rule.required(),
         }),
         defineField({
@@ -30,56 +28,37 @@ export const projectType = defineType({
             validation: (Rule) => Rule.required().max(200),
         }),
         defineField({
+            name: "client",
+            title: "Client",
+            type: "string",
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: "caseStudy",
             title: "Case Study",
-            type: "object",
+            type: "blockContent",
+            description:
+                "Full project case study with problem, solution, process, and results",
+        }),
+        defineField({
+            name: "logo",
+            title: "Logo",
+            type: "image",
+            options: { hotspot: true },
             fields: [
                 defineField({
-                    name: "overview",
-                    title: "Project Overview",
-                    type: "blockContent",
-                    description: "Brief overview of the project and its goals",
-                }),
-                defineField({
-                    name: "problem",
-                    title: "Problem Statement",
-                    type: "blockContent",
-                    description: "What problem were you solving?",
-                }),
-                defineField({
-                    name: "solution",
-                    title: "Solution Approach",
-                    type: "blockContent",
-                    description: "How did you approach solving the problem?",
-                }),
-                defineField({
-                    name: "process",
-                    title: "Design/Development Process",
-                    type: "blockContent",
-                    description: "Step-by-step breakdown of your methodology",
-                }),
-                defineField({
-                    name: "results",
-                    title: "Results & Impact",
-                    type: "blockContent",
-                    description: "Outcomes, metrics, and project impact",
-                }),
-                defineField({
-                    name: "learnings",
-                    title: "Key Learnings",
-                    type: "blockContent",
-                    description:
-                        "What did you learn? What would you do differently?",
+                    name: "alt",
+                    type: "string",
+                    title: "Alternative text",
                 }),
             ],
+            validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: "featuredImage",
             title: "Featured Image",
             type: "image",
-            options: {
-                hotspot: true,
-            },
+            options: { hotspot: true },
             fields: [
                 defineField({
                     name: "alt",
@@ -96,9 +75,7 @@ export const projectType = defineType({
             of: [
                 defineArrayMember({
                     type: "image",
-                    options: {
-                        hotspot: true,
-                    },
+                    options: { hotspot: true },
                     fields: [
                         defineField({
                             name: "alt",
@@ -115,77 +92,32 @@ export const projectType = defineType({
             ],
         }),
         defineField({
-            name: "categories",
-            title: "Project Categories",
-            type: "array",
-            of: [
-                defineArrayMember({
-                    type: "reference",
-                    to: { type: "projectCategory" },
-                }),
-            ],
-            validation: (Rule) => Rule.required().min(1),
-        }),
-        defineField({
             name: "technologies",
             title: "Technologies Used",
             type: "array",
             of: [
                 defineArrayMember({
-                    type: "object",
-                    fields: [
-                        defineField({
-                            name: "name",
-                            title: "Technology Name",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "category",
-                            title: "Category",
-                            type: "string",
-                            options: {
-                                list: [
-                                    {
-                                        title: "Frontend Framework",
-                                        value: "frontend-framework",
-                                    },
-                                    {
-                                        title: "Backend Framework",
-                                        value: "backend-framework",
-                                    },
-                                    { title: "Database", value: "database" },
-                                    {
-                                        title: "AI/ML Framework",
-                                        value: "ai-ml",
-                                    },
-                                    {
-                                        title: "Testing Framework",
-                                        value: "testing",
-                                    },
-                                    { title: "DevOps Tool", value: "devops" },
-                                    {
-                                        title: "Design Tool",
-                                        value: "design-tool",
-                                    },
-                                    { title: "Cloud Service", value: "cloud" },
-                                    {
-                                        title: "Programming Language",
-                                        value: "language",
-                                    },
-                                    { title: "Library", value: "library" },
-                                    { title: "Tool", value: "tool" },
-                                ],
-                            },
-                        }),
-                    ],
-                    preview: {
-                        select: {
-                            title: "name",
-                            subtitle: "category",
-                        },
+                    type: "string",
+                    options: {
+                        layout: "dropdown",
+                        list: [
+                            { title: "React", value: "react" },
+                            { title: "Next.js", value: "nextjs" },
+                            { title: "TypeScript", value: "typescript" },
+                            { title: "Tailwind CSS", value: "tailwind" },
+                            { title: "Node.js", value: "nodejs" },
+                            { title: "Postgres", value: "postgresql" },
+                            { title: "MongoDB", value: "mongodb" },
+                            { title: "Sanity", value: "sanity" },
+                            { title: "Figma", value: "figma" },
+                            { title: "Vercel", value: "vercel" },
+                            { title: "REST API", value: "rest-api" },
+                            { title: "GraphQL", value: "graphql" },
+                        ],
                     },
                 }),
             ],
+            description: "Select technologies, frameworks, and tools used",
         }),
         defineField({
             name: "projectType",
@@ -197,22 +129,6 @@ export const projectType = defineType({
                     { title: "Personal Project", value: "personal" },
                     { title: "Open Source", value: "open-source" },
                     { title: "Freelance", value: "freelance" },
-                    { title: "Team Project", value: "team" },
-                    { title: "Experiment", value: "experiment" },
-                ],
-            },
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-            name: "status",
-            title: "Project Status",
-            type: "string",
-            options: {
-                list: [
-                    { title: "Completed", value: "completed" },
-                    { title: "In Progress", value: "in-progress" },
-                    { title: "On Hold", value: "on-hold" },
-                    { title: "Concept", value: "concept" },
                 ],
             },
             validation: (Rule) => Rule.required(),
@@ -224,6 +140,7 @@ export const projectType = defineType({
             description: "Show this project prominently on portfolio",
             initialValue: false,
         }),
+
         defineField({
             name: "links",
             title: "Project Links",
@@ -239,195 +156,13 @@ export const projectType = defineType({
                     title: "GitHub Repository",
                     type: "url",
                 }),
-                defineField({
-                    name: "design",
-                    title: "Design Files (Figma, etc.)",
-                    type: "url",
-                }),
-                defineField({
-                    name: "case_study",
-                    title: "Case Study URL",
-                    type: "url",
-                }),
             ],
-        }),
-        defineField({
-            name: "client",
-            title: "Client Information",
-            type: "object",
-            fields: [
-                defineField({
-                    name: "name",
-                    title: "Client Name",
-                    type: "string",
-                }),
-                defineField({
-                    name: "industry",
-                    title: "Industry",
-                    type: "string",
-                }),
-                defineField({
-                    name: "testimonial",
-                    title: "Client Testimonial",
-                    type: "text",
-                }),
-            ],
-        }),
-        defineField({
-            name: "timeline",
-            title: "Project Timeline",
-            type: "object",
-            fields: [
-                defineField({
-                    name: "startDate",
-                    title: "Start Date",
-                    type: "date",
-                }),
-                defineField({
-                    name: "endDate",
-                    title: "End Date",
-                    type: "date",
-                }),
-                defineField({
-                    name: "duration",
-                    title: "Duration",
-                    type: "string",
-                    description: "e.g., '3 months', '2 weeks'",
-                }),
-            ],
-        }),
-        defineField({
-            name: "challenges",
-            title: "Challenges & Solutions",
-            type: "array",
-            of: [
-                defineArrayMember({
-                    type: "object",
-                    fields: [
-                        defineField({
-                            name: "challenge",
-                            title: "Challenge",
-                            type: "text",
-                        }),
-                        defineField({
-                            name: "solution",
-                            title: "Solution",
-                            type: "text",
-                        }),
-                    ],
-                    preview: {
-                        select: {
-                            title: "challenge",
-                        },
-                        prepare(selection) {
-                            return {
-                                title:
-                                    selection.title?.substring(0, 60) + "...",
-                            };
-                        },
-                    },
-                }),
-            ],
-        }),
-        defineField({
-            name: "specialFeatures",
-            title: "Special Features",
-            type: "array",
-            of: [
-                defineArrayMember({
-                    type: "object",
-                    fields: [
-                        defineField({
-                            name: "title",
-                            title: "Feature Title",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "description",
-                            title: "Description",
-                            type: "text",
-                        }),
-                        defineField({
-                            name: "technology",
-                            title: "Technology/Tool Used",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "category",
-                            title: "Feature Category",
-                            type: "string",
-                            options: {
-                                list: [
-                                    {
-                                        title: "AI/ML Integration",
-                                        value: "ai-ml",
-                                    },
-                                    {
-                                        title: "Performance Optimization",
-                                        value: "performance",
-                                    },
-                                    {
-                                        title: "Security Feature",
-                                        value: "security",
-                                    },
-                                    {
-                                        title: "Accessibility",
-                                        value: "accessibility",
-                                    },
-                                    { title: "User Experience", value: "ux" },
-                                    { title: "Data Processing", value: "data" },
-                                    { title: "API Integration", value: "api" },
-                                    {
-                                        title: "Real-time Feature",
-                                        value: "realtime",
-                                    },
-                                    {
-                                        title: "Automation",
-                                        value: "automation",
-                                    },
-                                    {
-                                        title: "Custom Solution",
-                                        value: "custom",
-                                    },
-                                ],
-                            },
-                        }),
-                    ],
-                    preview: {
-                        select: {
-                            title: "title",
-                            subtitle: "category",
-                        },
-                    },
-                }),
-            ],
-            description:
-                "Highlight any special or innovative features in this project",
-        }),
-        defineField({
-            name: "metrics",
-            title: "Project Metrics",
-            type: "object",
-            fields: [
-                defineField({
-                    name: "performance",
-                    title: "Performance Improvements",
-                    type: "string",
-                    description:
-                        "e.g., '50% faster loading', '30% increase in conversions'",
-                }),
-                defineField({
-                    name: "users",
-                    title: "User Impact",
-                    type: "string",
-                    description: "e.g., '10k+ users', 'Enterprise solution'",
-                }),
-                defineField({
-                    name: "other",
-                    title: "Other Metrics",
-                    type: "text",
-                }),
-            ],
+            validation: (Rule) =>
+                Rule.custom((links) =>
+                    !links?.live && !links?.github
+                        ? "Provide at least a Live Demo or GitHub link"
+                        : true,
+                ),
         }),
         defineField({
             name: "publishedAt",
@@ -446,15 +181,13 @@ export const projectType = defineType({
         select: {
             title: "title",
             media: "featuredImage",
-            categories: "categories",
-            status: "status",
+            projectType: "projectType",
         },
         prepare(selection) {
-            const { title, media, categories, status } = selection;
-            const categoryList = categories?.join(", ") || "No categories";
+            const { title, media, projectType } = selection;
             return {
                 title,
-                subtitle: `${status} • ${categoryList}`,
+                subtitle: projectType,
                 media,
             };
         },
@@ -464,11 +197,6 @@ export const projectType = defineType({
             title: "Published Date, New",
             name: "publishedAtDesc",
             by: [{ field: "publishedAt", direction: "desc" }],
-        },
-        {
-            title: "Published Date, Old",
-            name: "publishedAtAsc",
-            by: [{ field: "publishedAt", direction: "asc" }],
         },
         {
             title: "Display Order",

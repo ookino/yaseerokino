@@ -11,7 +11,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={`${fontVariables} antialiased`}>
                 {" "}
                 <ThemeProvider
@@ -20,10 +20,6 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <div className="absolute top-4 right-4">
-                        <ModeToggle />
-                    </div>
-
                     {children}
                 </ThemeProvider>
             </body>
